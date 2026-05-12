@@ -466,6 +466,60 @@ body.focus-mode .calwrap{padding-top:1rem}
 .share-btns button{width:44px;height:44px;border-radius:50%;border:1px solid var(--brd);background:var(--bg);color:var(--tx);cursor:pointer;font-size:1.1rem;transition:var(--tr)}
 .share-btns button:hover{transform:scale(1.1)}
 
+/* ===== CONTENT RADAR (spider chart) ===== */
+.radar-card{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:1rem 1.2rem;flex:1;min-width:200px;display:flex;flex-direction:column;align-items:center}
+.radar-card h4{font-size:.78rem;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.radar-card svg text{font-family:'Inter',sans-serif}
+
+/* ===== DUPLICATE DETECTOR ===== */
+.dup-banner{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:var(--r);padding:.7rem 1rem;margin:0 1.5rem .6rem;display:flex;align-items:center;gap:.8rem;font-size:.8rem;cursor:pointer;transition:var(--tr)}
+.dup-banner:hover{background:rgba(245,158,11,.14)}
+.dup-banner i{color:var(--org);font-size:1.1rem}
+.dup-banner .dup-count{font-weight:700;color:var(--org)}
+.dup-list{margin-top:.5rem;display:none}
+.dup-banner.expanded .dup-list{display:block}
+.dup-item{display:flex;align-items:center;gap:.5rem;padding:.3rem 0;font-size:.75rem;border-bottom:1px solid rgba(245,158,11,.1)}
+.dup-item:last-child{border:none}
+
+/* ===== TIMELINE GANTT MINI ===== */
+.gantt-wrap{padding:0 1.5rem .8rem}
+.gantt-card{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);padding:1rem 1.2rem;overflow-x:auto}
+.gantt-card h4{font-size:.78rem;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem}
+.gantt-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
+.gantt-label{font-size:.7rem;font-weight:600;min-width:100px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--tx2)}
+.gantt-track{flex:1;height:18px;background:var(--bg);border-radius:4px;position:relative;min-width:300px}
+.gantt-bar{position:absolute;height:100%;border-radius:4px;min-width:6px;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:#fff;font-weight:700;overflow:hidden}
+.gantt-bar:hover{filter:brightness(1.2);transform:scaleY(1.3)}
+.gantt-bar.gb-a{background:var(--blu)}.gantt-bar.gb-b{background:var(--pnk)}.gantt-bar.gb-def{background:var(--ac)}
+.gantt-dates{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.6rem;color:var(--tx3)}
+
+/* ===== QUICK COLOR LEGEND ===== */
+.color-legend{display:flex;gap:.8rem;padding:0 1.5rem .4rem;flex-wrap:wrap}
+.cl-item{display:flex;align-items:center;gap:.3rem;font-size:.68rem;color:var(--tx2)}
+.cl-dot{width:10px;height:10px;border-radius:3px}
+
+/* ===== FLOATING HELP ===== */
+.help-btn{position:fixed;bottom:1.5rem;left:1.5rem;z-index:90;width:36px;height:36px;border-radius:50%;background:var(--bg2);border:1px solid var(--brd);color:var(--tx2);cursor:pointer;font-size:.85rem;display:none;align-items:center;justify-content:center;transition:var(--tr)}
+#app.show .help-btn{display:flex}
+.help-btn:hover{color:var(--ac);border-color:var(--ac)}
+.help-modal-body{max-height:60vh;overflow-y:auto}
+.help-section{margin-bottom:1rem}
+.help-section h4{font-size:.85rem;font-weight:700;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.help-section h4 i{color:var(--ac)}
+.help-row{display:flex;align-items:center;gap:.6rem;padding:.3rem 0;font-size:.8rem}
+.help-row kbd{background:var(--bg3);padding:.15rem .45rem;border-radius:4px;font-weight:600;font-family:inherit;font-size:.72rem;min-width:24px;text-align:center}
+.help-row span{color:var(--tx2)}
+
+/* ===== PRINT STYLES ===== */
+@media print{
+    body{background:#fff!important;color:#000!important}
+    .topbar,.tabs,.ticker,.mobile-nav,.speed-dial,.kb-hint,.fab,.ttip,.toast,.countdown-bar,.achievements,.help-btn,.compare-bar,.fpanel,.notes-panel,.export-panel,.gsearch-ov,.spotlight,.wizard-overlay,.ctx-menu{display:none!important}
+    .srow,.charts-row,.week-summary,.calwrap,.heatmap-wrap,.insights-card,.digest,.gantt-wrap,#timeHeat,#tblwrap{break-inside:avoid}
+    .scard,.chart-card,.ws-card{border:1px solid #ddd!important}
+    #cal{border:1px solid #ddd!important}
+    .fc-event{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+
 /* ===== AUTO-SLIDESHOW ===== */
 .ss-controls{display:flex;align-items:center;gap:.6rem;margin-top:1rem}
 .ss-controls button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
@@ -718,10 +772,13 @@ body.focus-mode .calwrap{padding-top:1rem}
         <div class="mini-cal" id="miniCal"></div>
         <div class="charts-row" id="charts"></div>
         <div class="week-summary" id="weekSummary"></div>
+        <div class="color-legend" id="colorLegend"></div>
         <div class="calwrap" id="calwrap"><div id="cal"></div></div>
         <div id="timeline"></div>
         <div id="kanban"></div>
+        <div id="dupBanner"></div>
         <div class="digest" id="digest" style="display:none"></div>
+        <div class="gantt-wrap" id="ganttWrap"></div>
         <div class="heatmap-wrap" id="heatmapWrap"></div>
         <div id="timeHeat"></div>
         <div class="insights-card" id="insights" style="display:none"></div>
@@ -802,6 +859,8 @@ body.focus-mode .calwrap{padding-top:1rem}
             <button class="mnav-btn" data-v="kanban"><i class="fas fa-th-large"></i>Kanban</button>
         </div>
     </nav>
+    <!-- HELP BUTTON -->
+    <button class="help-btn" id="helpBtn"><i class="fas fa-question"></i></button>
     <!-- SWIPE HINT -->
     <div class="swipe-hint" id="swipeHint">&larr; Desliza para cambiar mes &rarr;</div>
     <!-- WELCOME WIZARD -->
@@ -876,6 +935,7 @@ function init(){
     document.getElementById('spPrev').addEventListener('click',()=>navSpotlight(-1));
     document.getElementById('spNext').addEventListener('click',()=>navSpotlight(1));
     document.getElementById('ssPlay').addEventListener('click',toggleSlideshow);
+    document.getElementById('helpBtn').addEventListener('click',showHelp);
     // Table search
     document.getElementById('tsearch').addEventListener('input',e=>{
         const q=e.target.value.toLowerCase();
@@ -985,7 +1045,7 @@ function pickSheet(name){
     }
     document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s===name));
     document.getElementById('shbadge').textContent=name;
-    buildEvents();buildFilters();render();renderTable();renderCharts();renderMiniCal();renderProgress();renderNotes();renderAchievements();renderWeekSummary();renderInsights();renderCountdown();renderDigest();renderTimeHeat();
+    buildEvents();buildFilters();render();renderTable();renderCharts();renderMiniCal();renderProgress();renderNotes();renderAchievements();renderWeekSummary();renderInsights();renderCountdown();renderDigest();renderTimeHeat();renderDuplicates();renderGantt();renderColorLegend();
 }
 
 function buildEvents(){
@@ -1288,6 +1348,8 @@ function renderCharts(){
         h+='<div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:3px"><div style="width:100%;background:'+(i===0||i===6?'var(--tx3)':'var(--ac)')+';height:'+Math.max(pct,4)+'%;border-radius:4px 4px 0 0;opacity:'+(v?1:.2)+';transition:height .5s ease"></div><span style="font-size:.6rem;color:var(--tx3)">'+dayN[i]+'</span></div>';
     });
     h+='</div><p style="font-size:.7rem;color:var(--tx3);margin-top:.6rem;text-align:center">'+S.events.length+' contenidos en '+[...new Set(S.events.map(e=>e.start.slice(0,10)))].length+' dias</p></div>';
+    // Radar chart
+    h+=radarChart();
     el.innerHTML=h;
 }
 
@@ -1826,6 +1888,133 @@ function showWizard(){
     el.classList.add('show');
     el.innerHTML='<div class="wizard-card"><h2>Bienvenido a Content Calendar Pro</h2><p>Tu calendario de contenido esta listo. Estas son las funciones disponibles:</p><div class="wiz-features"><div class="wiz-feat"><i class="fas fa-th"></i>6 vistas</div><div class="wiz-feat"><i class="fas fa-filter"></i>Filtros</div><div class="wiz-feat"><i class="fas fa-tv"></i>Presentacion</div><div class="wiz-feat"><i class="fas fa-search"></i>Busqueda Ctrl+K</div><div class="wiz-feat"><i class="fas fa-brain"></i>AI Insights</div><div class="wiz-feat"><i class="fas fa-download"></i>5 exports</div><div class="wiz-feat"><i class="fas fa-sun"></i>Light/Dark</div><div class="wiz-feat"><i class="fas fa-hand-pointer"></i>Drag & drop</div></div><button class="wiz-btn" id="wizClose">Comenzar <i class="fas fa-arrow-right"></i></button></div>';
     document.getElementById('wizClose').addEventListener('click',()=>{el.classList.remove('show');try{localStorage.setItem('ccp-wizard-done','1')}catch(e){}});
+}
+
+// ===== RADAR CHART =====
+function radarChart(){
+    const metrics={};
+    const labels=['Volumen','Variedad','Cobertura','Balance','Consistencia'];
+    const evts=S.events;if(!evts.length)return '';
+    const dates=[...new Set(evts.map(e=>e.start.slice(0,10)))];
+    const accts={};evts.forEach(e=>{if(e.extendedProps.acct)accts[e.extendedProps.acct]=(accts[e.extendedProps.acct]||0)+1});
+    const acctVals=Object.values(accts);
+    // Volume (0-100): based on events count, 30+ = 100
+    metrics.vol=Math.min(evts.length/30*100,100);
+    // Variety: unique titles / total
+    const uniq=new Set(evts.map(e=>e.title)).size;
+    metrics.var=Math.min(uniq/Math.max(evts.length,1)*100*2,100);
+    // Coverage: days with content / total range days
+    const range=dates.length>=2?Math.round((new Date(dates[dates.length-1]+'T12:00:00')-new Date(dates[0]+'T12:00:00'))/864e5)+1:1;
+    metrics.cov=Math.min(dates.length/Math.max(range,1)*100*1.5,100);
+    // Balance: how equal are account distributions (100=perfectly equal)
+    metrics.bal=acctVals.length>=2?100-Math.abs(acctVals[0]-acctVals[1])/Math.max(...acctVals)*100:50;
+    // Consistency: how regular is posting (std dev of gaps)
+    const gaps=[];for(let i=1;i<dates.length;i++){gaps.push(Math.round((new Date(dates[i]+'T12:00:00')-new Date(dates[i-1]+'T12:00:00'))/864e5))}
+    const avgGap=gaps.length?gaps.reduce((a,b)=>a+b,0)/gaps.length:0;
+    const stdGap=gaps.length?Math.sqrt(gaps.reduce((a,g)=>a+(g-avgGap)**2,0)/gaps.length):0;
+    metrics.con=Math.max(0,100-stdGap*15);
+    const vals=[metrics.vol,metrics.var,metrics.cov,metrics.bal,metrics.con];
+    const cx=70,cy=70,r=55,n=5;
+    let svg='<svg viewBox="0 0 140 150" width="140">';
+    // Grid
+    [.25,.5,.75,1].forEach(s=>{let pts='';for(let i=0;i<n;i++){const a=Math.PI*2/n*i-Math.PI/2;pts+=`${cx+Math.cos(a)*r*s},${cy+Math.sin(a)*r*s} `}svg+=`<polygon points="${pts}" fill="none" stroke="var(--brd)" stroke-width=".5"/>`});
+    // Axes
+    for(let i=0;i<n;i++){const a=Math.PI*2/n*i-Math.PI/2;svg+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*r}" y2="${cy+Math.sin(a)*r}" stroke="var(--brd)" stroke-width=".5"/>`}
+    // Data polygon
+    let pts='';for(let i=0;i<n;i++){const a=Math.PI*2/n*i-Math.PI/2;const v=vals[i]/100;pts+=`${cx+Math.cos(a)*r*v},${cy+Math.sin(a)*r*v} `}
+    svg+=`<polygon points="${pts}" fill="rgba(99,102,241,.2)" stroke="var(--ac)" stroke-width="1.5"/>`;
+    // Data dots + labels
+    for(let i=0;i<n;i++){const a=Math.PI*2/n*i-Math.PI/2;const v=vals[i]/100;
+        svg+=`<circle cx="${cx+Math.cos(a)*r*v}" cy="${cy+Math.sin(a)*r*v}" r="3" fill="var(--ac)"/>`;
+        const lx=cx+Math.cos(a)*(r+14),ly=cy+Math.sin(a)*(r+14);
+        svg+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" fill="var(--tx2)" font-size="6" font-weight="600">${labels[i]}</text>`;
+        svg+=`<text x="${lx}" y="${ly+8}" text-anchor="middle" fill="var(--tx3)" font-size="5">${Math.round(vals[i])}%</text>`;
+    }
+    svg+='</svg>';
+    return '<div class="radar-card"><h4>Content Score</h4>'+svg+'<div style="font-size:.7rem;color:var(--tx2);margin-top:.3rem"><strong style="color:var(--ac);font-size:1rem">'+Math.round(vals.reduce((a,b)=>a+b,0)/n)+'</strong>/100 puntuacion general</div></div>';
+}
+
+// ===== DUPLICATE DETECTOR =====
+function renderDuplicates(){
+    const el=document.getElementById('dupBanner');
+    const titleCount={};
+    S.events.forEach(e=>{const d=e.start.slice(0,10);const k=e.title+'|'+d;titleCount[k]=(titleCount[k]||0)+1});
+    const dups=Object.entries(titleCount).filter(([,c])=>c>1);
+    if(!dups.length){el.innerHTML='';return}
+    let h='<div class="dup-banner" onclick="this.classList.toggle(\'expanded\')"><i class="fas fa-clone"></i><div><span class="dup-count">'+dups.length+' contenidos duplicados</span> detectados el mismo dia<div class="dup-list">';
+    dups.forEach(([k,c])=>{const[title,date]=k.split('|');h+='<div class="dup-item"><i class="fas fa-exclamation-circle" style="color:var(--org)"></i> <strong>'+esc(title.slice(0,30))+'</strong> &times;'+c+' el '+date+'</div>'});
+    h+='</div></div></div>';el.innerHTML=h;
+}
+
+// ===== GANTT CHART =====
+function renderGantt(){
+    const el=document.getElementById('ganttWrap');if(!S.events.length||S.events.length>50){el.innerHTML='';return}
+    const evts=filtered().sort((a,b)=>a.start.localeCompare(b.start));
+    const dates=evts.map(e=>e.start.slice(0,10));
+    const minD=new Date(dates[0]+'T12:00:00'),maxD=new Date(dates[dates.length-1]+'T12:00:00');
+    const range=Math.max(Math.round((maxD-minD)/864e5)+1,1);
+    let h='<div class="gantt-card"><h4><i class="fas fa-bars-staggered" style="color:var(--cyn);margin-right:6px"></i>Linea de Tiempo</h4>';
+    evts.forEach(ev=>{
+        const pr=ev.extendedProps;const d=new Date(ev.start.slice(0,10)+'T12:00:00');
+        const offset=Math.round((d-minD)/864e5)/range*100;
+        const acKey=pr.acct.toLowerCase().includes('a')?'a':pr.acct.toLowerCase().includes('b')?'b':'def';
+        h+='<div class="gantt-row"><div class="gantt-label" title="'+esc(ev.title)+'">'+esc(ev.title.slice(0,15))+'</div><div class="gantt-track"><div class="gantt-bar gb-'+acKey+'" style="left:'+offset+'%;width:'+Math.max(100/range,2)+'%" title="'+ev.start.slice(0,10)+'">'+ev.start.slice(5,10)+'</div></div></div>';
+    });
+    h+='<div class="gantt-dates"><span>'+dates[0]+'</span><span>'+dates[dates.length-1]+'</span></div></div>';
+    el.innerHTML=h;
+}
+
+// ===== COLOR LEGEND =====
+function renderColorLegend(){
+    const el=document.getElementById('colorLegend');if(!S.events.length){el.innerHTML='';return}
+    const items=[
+        {color:'var(--blu)',label:'Cuenta A'},
+        {color:'var(--pnk)',label:'Cuenta B'},
+        {color:'var(--ac)',label:'Otro'},
+    ];
+    const probItems=[
+        {color:'var(--grn)',label:'Alta prob.'},
+        {color:'var(--org)',label:'Media prob.'},
+        {color:'var(--red)',label:'Baja prob.'},
+    ];
+    el.innerHTML=[...items,...probItems].map(i=>'<div class="cl-item"><div class="cl-dot" style="background:'+i.color+'"></div>'+i.label+'</div>').join('');
+}
+
+// ===== HELP MODAL =====
+function showHelp(){
+    const m=document.getElementById('modal');
+    document.getElementById('mtitle').textContent='Ayuda - Content Calendar Pro';
+    document.getElementById('mbody').innerHTML='<div class="help-modal-body">'+
+    '<div class="help-section"><h4><i class="fas fa-keyboard"></i> Atajos de Teclado</h4>'+
+    '<div class="help-row"><kbd>Ctrl+K</kbd><span>Busqueda global en todos los sheets</span></div>'+
+    '<div class="help-row"><kbd>P</kbd><span>Modo presentacion / spotlight</span></div>'+
+    '<div class="help-row"><kbd>F</kbd><span>Pantalla completa</span></div>'+
+    '<div class="help-row"><kbd>T</kbd><span>Cambiar tema Dark/Light</span></div>'+
+    '<div class="help-row"><kbd>&larr; &rarr;</kbd><span>Navegar meses / slides</span></div>'+
+    '<div class="help-row"><kbd>Esc</kbd><span>Cerrar panel activo</span></div>'+
+    '</div>'+
+    '<div class="help-section"><h4><i class="fas fa-mouse-pointer"></i> Interacciones</h4>'+
+    '<div class="help-row"><kbd>Click</kbd><span>Ver detalle del evento con preview</span></div>'+
+    '<div class="help-row"><kbd>R-Click</kbd><span>Menu contextual (copiar, comparar, exportar)</span></div>'+
+    '<div class="help-row"><kbd>Drag</kbd><span>Mover eventos entre dias</span></div>'+
+    '<div class="help-row"><kbd>Long press</kbd><span>Menu contextual en mobile</span></div>'+
+    '<div class="help-row"><kbd>Swipe</kbd><span>Cambiar mes en mobile</span></div>'+
+    '</div>'+
+    '<div class="help-section"><h4><i class="fas fa-th-large"></i> Vistas Disponibles</h4>'+
+    '<div class="help-row"><kbd>Mes</kbd><span>Calendario mensual con heatmap</span></div>'+
+    '<div class="help-row"><kbd>Semana</kbd><span>Vista semanal con horas</span></div>'+
+    '<div class="help-row"><kbd>Lista</kbd><span>Lista cronologica</span></div>'+
+    '<div class="help-row"><kbd>Timeline</kbd><span>Linea de tiempo vertical</span></div>'+
+    '<div class="help-row"><kbd>Kanban</kbd><span>Tablero por estado temporal</span></div>'+
+    '<div class="help-row"><kbd>Spotlight</kbd><span>Presentacion card por card</span></div>'+
+    '</div>'+
+    '<div class="help-section"><h4><i class="fas fa-download"></i> Exportacion</h4>'+
+    '<div class="help-row"><kbd>.ics</kbd><span>Google Calendar, Outlook, Apple</span></div>'+
+    '<div class="help-row"><kbd>.csv</kbd><span>Excel, Google Sheets</span></div>'+
+    '<div class="help-row"><kbd>.json</kbd><span>APIs y desarrolladores</span></div>'+
+    '<div class="help-row"><kbd>Print</kbd><span>Vista optimizada para imprimir</span></div>'+
+    '</div></div>';
+    m.classList.add('show');
 }
 
 // ===== THEME COLOR UPDATE =====
